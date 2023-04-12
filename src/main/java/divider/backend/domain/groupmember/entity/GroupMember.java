@@ -43,5 +43,5 @@ public class GroupMember extends EntityDateInfo {
 
     private String profileImageUrl;
 
-    private Permission permission;
+    private Role role;
 }
