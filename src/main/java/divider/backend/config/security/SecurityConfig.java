@@ -26,8 +26,10 @@ public class SecurityConfig {
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     private static final String[] AUTH_WHITELIST = {
             "/swagger-ui/**",
-            "/api/**",
-            "/api-docs/**"
+            "/api",
+            "/api-docs/**",
+            "/api/auth/sign-up",
+            "/api/auth/sign-in"
     };
 
     @Bean
