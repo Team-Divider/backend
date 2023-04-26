@@ -11,12 +11,10 @@ import divider.backend.config.jwt.JwtProvider;
 import divider.backend.domain.member.dto.sign.*;
 import divider.backend.domain.member.entity.Authority;
 import divider.backend.domain.member.entity.Member;
-import divider.backend.domain.member.entity.RefreshToken;
 import divider.backend.exception.situation.LoginFailureException;
 import divider.backend.exception.situation.MemberNicknameAlreadyExistsException;
 import divider.backend.exception.situation.UsernameAlreadyExistsException;
 import divider.backend.domain.member.repository.MemberRepository;
-import divider.backend.domain.member.repository.RefreshTokenRepository;
 
 @Service
 @RequiredArgsConstructor
