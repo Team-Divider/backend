@@ -1,5 +1,6 @@
 package divider.backend.domain.member.controller;
 
+import divider.backend.domain.member.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
@@ -26,12 +27,15 @@ import static divider.backend.response.SuccessMessage.*;
 public class AuthController {
 
     private final AuthService authService;
+    private final MemberService memberService;
+
+    // TODO 인증번호 발송 및 확인 API
 
     @Operation(summary = "Sign Up API", description = "put your sign up info.")
     @ResponseStatus(CREATED)
     @PostMapping("/sign-up")
     public Response signUp(@Valid @RequestBody SignUpRequestDto signUpRequestDto) {
-        Member member = authService.signup(signUpRequestDto);
+        Member member = authService.signUp(signUpRequestDto);
         return success(SUCCESS_TO_SIGN_UP);
     }
 
@@ -42,6 +46,14 @@ public class AuthController {
         return success(SUCCESS_TO_SIGN_IN, authService.signIn(req));
     }
 
+    @Operation(summary = "Logout API", description = "this is logout")
+    @PostMapping("/logout")
+    @ResponseStatus(OK)
+    public Response logout() {
+        authService.logout(memberService.getCurrentMember());
+        return success(SUCCESS_TO_LOGOUT);
+    }
+
     @Operation(summary = "Reissue API", description = "put your token info which including access token and refresh token.")
     @ResponseStatus(OK)
     @PostMapping("/reissue")
@@ -49,11 +61,6 @@ public class AuthController {
         return success(SUCCESS_TO_REISSUE, authService.reissue(tokenRequestDto));
     }
 
-    @Operation(summary = "Test API", description = "testing swagger configuration.")
-    @GetMapping("/test")
-    public String testSwagger( ) {
-        return "Ok";
-    }
 
 
 }

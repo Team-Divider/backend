@@ -24,25 +24,10 @@ public class Member extends EntityDateInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
-
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GroupMember> groupMembers = new ArrayList<>();
-
-    private String email;
-
-    @JsonIgnore
-    @Column(nullable = false)
+    private String username;
     private String password;
-
     @Enumerated(EnumType.STRING)
     private Authority authority;
-
-    @Column(nullable = false, unique = true)
-    private String username;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false, unique = true)
-    private String nickname;
 }
